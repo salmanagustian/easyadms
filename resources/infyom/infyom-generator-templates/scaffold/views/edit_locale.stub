@@ -4,7 +4,7 @@
     @push('breadcrumb')
         <ol class="breadcrumb  my-0 ms-2">
           <li class="breadcrumb-item">
-             <a href="{!! route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index') !!}">@lang('models/$MODEL_NAME_PLURAL_CAMEL$.singular')</a>
+             <a href="{!! route($baseRoute.'index') !!}">@lang('models/$MODEL_NAME_PLURAL_CAMEL$.singular')</a>
           </li>
           <li class="breadcrumb-item active">@lang('crud.edit')</li>
         </ol>
@@ -14,7 +14,7 @@
              @include('common.errors')
              <div class="row">
                  <div class="col-lg-12">
-                    {!! Form::model($$MODEL_NAME_CAMEL$, ['route' => ['$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.update', $$MODEL_NAME_CAMEL$->$PRIMARY_KEY_NAME$], 'method' => 'patch'$FILES$]) !!}  
+                    {!! Form::model($$MODEL_NAME_CAMEL$, ['route' => [$baseRoute.'update', $$MODEL_NAME_CAMEL$->$PRIMARY_KEY_NAME$], 'method' => 'patch'$FILES$]) !!}  
                       <div class="card">                          
                           <div class="card-header">
                               <i class="fa fa-edit fa-lg"></i>
@@ -22,7 +22,7 @@
                           </div>
                           <div class="card-body">                              
 
-                              @include('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.fields')
+                              @include($baseView.'fields')
 
                               
                             </div>
@@ -30,7 +30,7 @@
                           <!-- Submit Field -->
                             <div class="form-group col-sm-12">
                                 {!! Form::submit(__('crud.save'), ['class' => 'btn btn-primary']) !!}
-                                <a href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index') }}" class="btn btn-default">@lang('crud.cancel')</a>
+                                <a href="{{ route($baseRoute.'index') }}" class="btn btn-default">@lang('crud.cancel')</a>
                             </div>
                           </div>                            
                       </div>                    

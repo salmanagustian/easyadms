@@ -17,7 +17,8 @@ class $MODEL_NAME$Controller extends AppBaseController
 {
     /** @var  $MODEL_NAME$Repository */
     protected $repository;
-
+    protected $baseRoute = '$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$';
+    protected $baseView = '$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$';
     public function __construct()
     {
         $this->repository = $MODEL_NAME$Repository::class;
@@ -31,7 +32,7 @@ class $MODEL_NAME$Controller extends AppBaseController
      */
     public function index($MODEL_NAME$DataTable $$MODEL_NAME_CAMEL$DataTable)
     {
-        return $$MODEL_NAME_CAMEL$DataTable->render('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.index');
+        return $$MODEL_NAME_CAMEL$DataTable->setBaseRoute($this->baseRoute)->render($this->baseRoute.'index');
     }
 
     /**
@@ -41,7 +42,7 @@ class $MODEL_NAME$Controller extends AppBaseController
      */
     public function create()
     {
-        return view('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.create')->with($this->getOptionItems());
+        return view($this->baseRoute.'create')->with($this->getOptionItems());
     }
 
     /**
@@ -62,7 +63,7 @@ class $MODEL_NAME$Controller extends AppBaseController
         
         Flash::success(__('messages.saved', ['model' => __('models/$MODEL_NAME_PLURAL_CAMEL$.singular')]));
 
-        return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
+        return redirect(route($this->baseRoute.'index'));
     }
 
     /**
@@ -79,10 +80,10 @@ class $MODEL_NAME$Controller extends AppBaseController
         if (empty($$MODEL_NAME_CAMEL$)) {
             Flash::error(__('models/$MODEL_NAME_PLURAL_CAMEL$.singular').' '.__('messages.not_found'));
 
-            return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
+            return redirect(route($this->baseRoute.'index'));
         }
 
-        return view('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.show')->with('$MODEL_NAME_CAMEL$', $$MODEL_NAME_CAMEL$);
+        return view($this->baseRoute.'show')->with('$MODEL_NAME_CAMEL$', $$MODEL_NAME_CAMEL$);
     }
 
     /**
@@ -99,10 +100,10 @@ class $MODEL_NAME$Controller extends AppBaseController
         if (empty($$MODEL_NAME_CAMEL$)) {
             Flash::error(__('messages.not_found', ['model' => __('models/$MODEL_NAME_PLURAL_CAMEL$.singular')]));
 
-            return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
+            return redirect(route($this->baseRoute.'index'));
         }
         
-        return view('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.edit')->with('$MODEL_NAME_CAMEL$', $$MODEL_NAME_CAMEL$)->with($this->getOptionItems());
+        return view($this->baseRoute.'edit')->with('$MODEL_NAME_CAMEL$', $$MODEL_NAME_CAMEL$)->with($this->getOptionItems());
     }
 
     /**
@@ -120,7 +121,7 @@ class $MODEL_NAME$Controller extends AppBaseController
         if (empty($$MODEL_NAME_CAMEL$)) {
             Flash::error(__('messages.not_found', ['model' => __('models/$MODEL_NAME_PLURAL_CAMEL$.singular')]));
 
-            return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
+            return redirect(route($this->baseRoute.'index'));
         }
 
         $$MODEL_NAME_CAMEL$ = $this->getRepositoryObj()->update($request->all(), $id);
@@ -130,7 +131,7 @@ class $MODEL_NAME$Controller extends AppBaseController
 
         Flash::success(__('messages.updated', ['model' => __('models/$MODEL_NAME_PLURAL_CAMEL$.singular')]));
 
-        return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
+        return redirect(route($this->baseRoute.'index'));
     }
 
     /**
@@ -147,7 +148,7 @@ class $MODEL_NAME$Controller extends AppBaseController
         if (empty($$MODEL_NAME_CAMEL$)) {
             Flash::error(__('messages.not_found', ['model' => __('models/$MODEL_NAME_PLURAL_CAMEL$.singular')]));
 
-            return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
+            return redirect(route($this->baseRoute.'index'));
         }
 
         $delete = $this->getRepositoryObj()->delete($id);
@@ -158,7 +159,7 @@ class $MODEL_NAME$Controller extends AppBaseController
 
         Flash::success(__('messages.deleted', ['model' => __('models/$MODEL_NAME_PLURAL_CAMEL$.singular')]));
 
-        return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
+        return redirect(route($this->baseRoute.'index'));
     }
 
     /**
@@ -171,6 +172,8 @@ class $MODEL_NAME$Controller extends AppBaseController
     private function getOptionItems(){        
         $REPOSITORY_OPTION_ITEM_INSTANCE
         return [
+            'baseRoute' => $this->baseRoute,
+            'baseView' => $this->baseView,
             $LIST_OPTION_ITEM_INSTANCE            
         ];
     }

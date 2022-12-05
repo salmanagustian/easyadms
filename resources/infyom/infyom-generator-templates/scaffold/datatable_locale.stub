@@ -9,6 +9,7 @@ use Yajra\DataTables\Html\Column;
 
 class $MODEL_NAME$DataTable extends DataTable
 {
+    private $baseRoute;
     /**
     * example mapping filter column to search by keyword, default use %keyword%
     */
@@ -35,7 +36,9 @@ class $MODEL_NAME$DataTable extends DataTable
                 $dataTable->filterColumn($column, new $operator($columnSearch));                
             }
         }
-        return $dataTable->addColumn('action', '$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.datatables_actions');
+        return $dataTable->addColumn('action', function($item){
+            return view($baseView.'datatables_actions', array_merge($item->toArray(), ['baseRoute' => $this->getBaseRoute()]));
+        });        
     }
 
     /**
@@ -127,5 +130,25 @@ class $MODEL_NAME$DataTable extends DataTable
     protected function filename()
     {
         return '$MODEL_NAME_PLURAL_SNAKE$_datatable_' . time();
+    }
+
+    /**
+     * Get the value of baseRoute
+     */ 
+    public function getBaseRoute()
+    {
+        return $this->baseRoute;
+    }
+
+    /**
+     * Set the value of baseRoute
+     *
+     * @return  self
+     */ 
+    public function setBaseRoute($baseRoute)
+    {
+        $this->baseRoute = $baseRoute;
+
+        return $this;
     }
 }
