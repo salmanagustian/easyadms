@@ -3,9 +3,7 @@
 @section('content')
   <div class="container-fluid mt-3">
         <div class="animated fadeIn">
-             @foreach ($widgets as $widget)
-                 {!! $widget !!}
-             @endforeach
+             ADMS PHP
         </div>
     </div>
 </div>
