@@ -4,7 +4,7 @@ namespace App\Models\Base;
 
 use App\Traits\SearchModelTrait;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
-use Illuminate\Database\Eloquent\SoftDeletes;
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Cache;
 use Spatie\Permission\Traits\HasPermissions;
@@ -62,7 +62,7 @@ use Spatie\Permission\Traits\HasRoles;
  */
 class User extends Authenticatable
 {
-    use SoftDeletes;
+    
     use HasRoles;
     use HasPermissions;
     use Cachable;

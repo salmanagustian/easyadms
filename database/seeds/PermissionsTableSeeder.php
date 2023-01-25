@@ -24,7 +24,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => NULL,
                 'guard_name' => 'web',
                 'id' => 1,
-                'name' => 'menu-index',
+                'name' => 'menus-index',
                 'updated_at' => NULL,
             ),
             1 => 
@@ -32,7 +32,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => NULL,
                 'guard_name' => 'web',
                 'id' => 2,
-                'name' => 'menu-create',
+                'name' => 'menus-create',
                 'updated_at' => NULL,
             ),
             2 => 
@@ -40,7 +40,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => NULL,
                 'guard_name' => 'web',
                 'id' => 3,
-                'name' => 'menu-update',
+                'name' => 'menus-update',
                 'updated_at' => NULL,
             ),
             3 => 
@@ -48,7 +48,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => NULL,
                 'guard_name' => 'web',
                 'id' => 4,
-                'name' => 'menu-delete',
+                'name' => 'menus-delete',
                 'updated_at' => NULL,
             ),
             4 => 
@@ -56,7 +56,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => NULL,
                 'guard_name' => 'web',
                 'id' => 5,
-                'name' => 'user-index',
+                'name' => 'users-index',
                 'updated_at' => NULL,
             ),
             5 => 
@@ -64,7 +64,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => NULL,
                 'guard_name' => 'web',
                 'id' => 6,
-                'name' => 'user-create',
+                'name' => 'users-create',
                 'updated_at' => NULL,
             ),
             6 => 
@@ -72,7 +72,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => NULL,
                 'guard_name' => 'web',
                 'id' => 7,
-                'name' => 'user-update',
+                'name' => 'users-update',
                 'updated_at' => NULL,
             ),
             7 => 
@@ -80,7 +80,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => NULL,
                 'guard_name' => 'web',
                 'id' => 8,
-                'name' => 'user-delete',
+                'name' => 'users-delete',
                 'updated_at' => NULL,
             ),
             8 => 
@@ -88,7 +88,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => NULL,
                 'guard_name' => 'web',
                 'id' => 9,
-                'name' => 'role-index',
+                'name' => 'roles-index',
                 'updated_at' => NULL,
             ),
             9 => 
@@ -96,7 +96,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => NULL,
                 'guard_name' => 'web',
                 'id' => 10,
-                'name' => 'role-create',
+                'name' => 'roles-create',
                 'updated_at' => NULL,
             ),
             10 => 
@@ -104,7 +104,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => NULL,
                 'guard_name' => 'web',
                 'id' => 11,
-                'name' => 'role-update',
+                'name' => 'roles-update',
                 'updated_at' => NULL,
             ),
             11 => 
@@ -112,7 +112,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => NULL,
                 'guard_name' => 'web',
                 'id' => 12,
-                'name' => 'role-delete',
+                'name' => 'roles-delete',
                 'updated_at' => NULL,
             ),
             12 => 
@@ -120,7 +120,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => NULL,
                 'guard_name' => 'web',
                 'id' => 13,
-                'name' => 'permission-index',
+                'name' => 'permissions-index',
                 'updated_at' => NULL,
             ),
             13 => 
@@ -128,7 +128,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => NULL,
                 'guard_name' => 'web',
                 'id' => 14,
-                'name' => 'permission-create',
+                'name' => 'permissions-create',
                 'updated_at' => NULL,
             ),
             14 => 
@@ -136,7 +136,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => NULL,
                 'guard_name' => 'web',
                 'id' => 15,
-                'name' => 'permission-update',
+                'name' => 'permissions-update',
                 'updated_at' => NULL,
             ),
             15 => 
@@ -144,7 +144,7 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => NULL,
                 'guard_name' => 'web',
                 'id' => 16,
-                'name' => 'permission-delete',
+                'name' => 'permissions-delete',
                 'updated_at' => NULL,
             )
         ));

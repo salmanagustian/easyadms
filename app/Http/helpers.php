@@ -122,3 +122,40 @@ if (!function_exists('generateMenu')) {
         });
     }
 }
+
+if (!function_exists('extractDataLogAttendance')) {
+    function extractDataLogAttendance(String $logs)
+    {
+        $result = [];
+        $lines = explode(PHP_EOL, $logs);
+        foreach($lines as $line){
+            if(!empty($line)){
+                $result[] = preg_split('/\s+/', $line);
+            }
+        }
+
+        return $result;
+    }
+}
+
+// USER PIN=1079	Name=Hendri	Pri=14	Passwd=1234	Card=	Grp=1	TZ=0000000100000000	Verify=0	ViceCard=	StartDatetime=0	EndDatetime=0
+if (!function_exists('extractDataOperationLog')) {
+    function extractDataOperationLog(String $logs)
+    {
+        $result = ['data' => [], 'key' => null];
+        $lines = explode(PHP_EOL, $logs);
+        foreach($lines as $line){
+            if(!empty($line)){
+                $tmp = preg_split('/\s+/', $line);
+                $key = array_shift($tmp);
+                if(empty($result['key'])){
+                    $result['key'] = $key;
+                }
+                $result['data'][] = convertStringArray($tmp, '=');
+            }
+        }
+
+        return $result;
+    }
+}
+

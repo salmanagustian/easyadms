@@ -17,7 +17,7 @@
                              @lang('models/$MODEL_NAME_PLURAL_CAMEL$.plural')                             
                          </div>
                          <div class="card-body">                             
-                             @include($baseView.'table')                             
+                             @include($baseView.'.table')                             
                               <div class="pull-right mr-3">
                                      $PAGINATE$
                               </div>

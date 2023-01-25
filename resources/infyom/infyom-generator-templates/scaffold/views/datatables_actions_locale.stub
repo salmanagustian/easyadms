@@ -1,6 +1,6 @@
-{!! Form::open(['route' => [$baseRoute.'destroy', $$PRIMARY_KEY_NAME$], 'method' => 'delete']) !!}
+{!! Form::open(['route' => [$baseRoute.'.destroy', $$PRIMARY_KEY_NAME$], 'method' => 'delete']) !!}
 <div class='btn-group'>    
-    <a href="{{ route($baseRoute.'edit', $$PRIMARY_KEY_NAME$) }}" class='btn btn-ghost-info'>
+    <a href="{{ route($baseRoute.'.edit', $$PRIMARY_KEY_NAME$) }}" class='btn btn-ghost-info'>
        <i class="fa fa-edit"></i>
     </a>
     {!! Form::button('<i class="fa fa-trash"></i>', [

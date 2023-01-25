@@ -122,8 +122,6 @@ class MenusTableSeeder extends Seeder
                 'status' => '1',
                 'updated_at' => '2021-10-29 14:51:54',
             )            
-        ));
-        
-        
+        ));                
     }
 }

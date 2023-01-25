@@ -10,6 +10,7 @@ use Yajra\DataTables\Html\Column;
 class $MODEL_NAME$DataTable extends DataTable
 {
     private $baseRoute;
+    private $baseView;
     /**
     * example mapping filter column to search by keyword, default use %keyword%
     */
@@ -37,7 +38,7 @@ class $MODEL_NAME$DataTable extends DataTable
             }
         }
         return $dataTable->addColumn('action', function($item){
-            return view($baseView.'datatables_actions', array_merge($item->toArray(), ['baseRoute' => $this->getBaseRoute()]));
+            return view($this->baseView.'.datatables_actions', array_merge($item->toArray(), ['baseRoute' => $this->getBaseRoute()]));
         });        
     }
 
@@ -148,6 +149,26 @@ class $MODEL_NAME$DataTable extends DataTable
     public function setBaseRoute($baseRoute)
     {
         $this->baseRoute = $baseRoute;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of baseView
+     */ 
+    public function getBaseView()
+    {
+        return $this->baseView;
+    }
+
+    /**
+     * Set the value of baseView
+     *
+     * @return  self
+     */ 
+    public function setBaseView($baseView)
+    {
+        $this->baseView = $baseView;
 
         return $this;
     }
