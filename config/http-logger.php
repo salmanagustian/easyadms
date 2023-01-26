@@ -18,7 +18,7 @@ return [
     /*
      * The log channel used to write the request.
      */
-    'log_channel' => env('LOG_CHANNEL', 'stack'),
+    'log_channel' => env('LOG_CHANNEL', 'daily'),
 
     /*
      * The log level used to log the request.
