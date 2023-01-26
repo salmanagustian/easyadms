@@ -10,6 +10,6 @@ class LogAllRequests implements LogProfile
     public function shouldLogRequest(Request $request): bool
     {
         // return in_array(strtolower($request->method()), ['post', 'put', 'patch', 'delete']);
-        return true;
+        return env('APP_DEBUG', false);
     }
 }
