@@ -34,8 +34,10 @@ class CdataPostController extends Controller
                 break;
             default;
         }
-        $device->attlog_stamp = $stamp;
-        $device->save();
+        if($device->attlog_stamp != $stamp){
+            $device->attlog_stamp = $stamp;
+            $device->save();
+        }        
 
         $textResponse = <<<STR
 OK: {$result}

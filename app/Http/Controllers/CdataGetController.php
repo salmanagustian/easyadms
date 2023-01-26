@@ -82,7 +82,9 @@ STR;
 
     private function updateInfoDevice($sn, $info){
         $device = Device::firstOrCreate(['serial_number' => $sn]);
-        $device->additional_info = $info;
-        $device->save();
+        if($device->additional_info != $info){
+            $device->additional_info = $info;
+            $device->save();
+        }        
     }    
 }

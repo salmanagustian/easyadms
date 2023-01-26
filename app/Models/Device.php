@@ -113,8 +113,6 @@ class Device extends Model
 
     protected $dates = ['deleted_at'];
 
-
-
     public $fillable = [
         'serial_number',
         'additional_info',
