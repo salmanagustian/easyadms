@@ -59,8 +59,11 @@ if (!function_exists('convertStringArray')) {
     {
         $result = [];
         foreach ($values as $value) {
-            list($key, $val) = explode($separator, $value);
-            $result[trim($key)] = trim($val);
+            if(str_contains($value, $separator)){
+                list($key, $val) = explode($separator, $value);            
+                $result[trim($key)] = trim($val);
+            }
+            
         }
 
         return $result;
@@ -150,11 +153,11 @@ if (!function_exists('extractDataOperationLog')) {
                 $key = array_shift($tmp);
                 if(empty($result['key'])){
                     $result['key'] = $key;
-                }
+                }                
                 $result['data'][] = convertStringArray($tmp, '=');
             }
         }
-
+        
         return $result;
     }
 }

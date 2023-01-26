@@ -67,8 +67,7 @@ STR;
     }
 
     // saveOperationLog
-    private function saveOperationLog($content, $device){
-        \Log::info($content);
+    private function saveOperationLog($content, $device){        
         $oprLog = extractDataOperationLog($content);
         $count = count($oprLog['data']);
         
