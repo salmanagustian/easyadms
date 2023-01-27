@@ -124,7 +124,7 @@ class AttendanceLogDataTable extends DataTable
     {
         $deviceItem = convertArrayPairValueWithKey(['' => 'choose'] + Device::pluck('serial_number', 'id')->toArray());        
         return [
-            'device_id' => new Column(['title' => __('models/attendanceLogs.fields.device_id'),'name' => 'device_id', 'data' => 'device.serial_number', 'searchable' => true, 'elmsearch' => 'dropdown', 'listItem' => $deviceItem]),
+            'device_id' => new Column(['title' => __('models/attendanceLogs.fields.device_id'),'name' => 'device_id', 'data' => 'device.name', 'searchable' => true, 'elmsearch' => 'dropdown', 'listItem' => $deviceItem]),
             'pin' => new Column(['title' => __('models/attendanceLogs.fields.pin'),'name' => 'pin', 'data' => 'pin', 'searchable' => true, 'elmsearch' => 'text']),            
             'fingertime' => new Column(['title' => __('models/attendanceLogs.fields.fingertime'),'name' => 'fingertime', 'data' => 'fingertime', 'searchable' => true, 'elmsearch' => 'daterange']),
             // 'status' => new Column(['title' => __('models/attendanceLogs.fields.status'),'name' => 'status', 'data' => 'status', 'searchable' => true, 'elmsearch' => 'text']),
