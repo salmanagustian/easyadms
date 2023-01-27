@@ -7,6 +7,7 @@ return array (
   array (
     'id' => 'Id',
     'serial_number' => 'Serial Number',
+    'name' => 'Name',
     'additional_info' => 'Additional Info',
     'attlog_stamp' => 'Attlog Stamp',
     'operlog_stamp' => 'Operlog Stamp',

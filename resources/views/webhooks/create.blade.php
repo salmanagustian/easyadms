@@ -4,7 +4,7 @@
     @push('breadcrumb')
     <ol class="breadcrumb  my-0 ms-2">
       <li class="breadcrumb-item">
-         <a href="{!! route($baseRoute.'.index') !!}">@lang('models/$MODEL_NAME_PLURAL_CAMEL$.singular')</a>
+         <a href="{!! route($baseRoute.'.index') !!}">@lang('models/webhooks.singular')</a>
       </li>
       <li class="breadcrumb-item active">@lang('crud.add_new')</li>
     </ol>
@@ -14,11 +14,11 @@
                 @include('common.errors')
                 <div class="row">
                     <div class="col-lg-12">
-                        {!! Form::open(['route' => $baseRoute.'.store'$FILES$]) !!}
+                        {!! Form::open(['route' => $baseRoute.'.store']) !!}
                         <div class="card">
                             <div class="card-header">
                                 <i class="fa fa-plus-square-o fa-lg"></i>
-                                <strong>Create @lang('models/$MODEL_NAME_PLURAL_CAMEL$.singular')</strong>
+                                <strong>Create @lang('models/webhooks.singular')</strong>
                             </div>
                             <div class="card-body">                                
 

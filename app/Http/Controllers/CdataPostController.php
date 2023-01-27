@@ -8,6 +8,7 @@ use App\Repositories\AttendanceLogRepository;
 use App\Repositories\TemplateFingerprintDeviceRepository;
 use App\Repositories\UserDeviceRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class CdataPostController extends Controller
 {
@@ -57,12 +58,21 @@ STR;
         ->header('Content-length', strlen($textResponse));
     }    
 
-    private function saveAttendanceLog($content, $device){        
-        $attLog = extractDataLogAttendance($content);        
+    private function saveAttendanceLog($content, $device){
+        $attLog = extractDataLogAttendance($content);
         $count = count($attLog);
         
         if($count  > 0){
-            (new AttendanceLogRepository())->saveAttendance($attLog, $device->id);            
+            (new AttendanceLogRepository())->saveAttendance($attLog, $device->id);
+            $webhook = $device->webhook;
+            if($webhook){
+                if(!empty($webhook->url)){
+                    if(env('APP_DEBUG')){
+                        \Log::error('send data to webhook '.$webhook->url);
+                    }
+                    Http::post($webhook->url, ['data' => $attLog]);
+                }
+            }
         }
 
         return $count ;

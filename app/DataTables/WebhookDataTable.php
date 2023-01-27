@@ -2,12 +2,12 @@
 
 namespace App\DataTables;
 
-use App\Models\Device;
+use App\Models\Webhook;
 use App\DataTables\BaseDataTable as DataTable;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Column;
 
-class DeviceDataTable extends DataTable
+class WebhookDataTable extends DataTable
 {
     private $baseRoute;
     private $baseView;
@@ -45,12 +45,12 @@ class DeviceDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Device $model
+     * @param \App\Models\Webhook $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Device $model)
+    public function query(Webhook $model)
     {
-        return $model->select([$model->getTable().'.*'])->newQuery();
+        return $model->select([$model->getTable().'.*'])->with(['device'])->newQuery();
     }
 
     /**
@@ -119,22 +119,8 @@ class DeviceDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'serial_number' => new Column(['title' => __('models/devices.fields.serial_number'),'name' => 'serial_number', 'data' => 'serial_number', 'searchable' => true, 'elmsearch' => 'text']),
-            'name' => new Column(['title' => __('models/devices.fields.name'),'name' => 'name', 'data' => 'name', 'searchable' => true, 'elmsearch' => 'text']),
-            'additional_info' => new Column(['title' => __('models/devices.fields.additional_info'),'name' => 'additional_info', 'data' => 'additional_info', 'searchable' => true, 'elmsearch' => 'text']),
-            'attlog_stamp' => new Column(['title' => __('models/devices.fields.attlog_stamp'),'name' => 'attlog_stamp', 'data' => 'attlog_stamp', 'searchable' => true, 'elmsearch' => 'text']),
-            'operlog_stamp' => new Column(['title' => __('models/devices.fields.operlog_stamp'),'name' => 'operlog_stamp', 'data' => 'operlog_stamp', 'searchable' => true, 'elmsearch' => 'text']),
-            'attphotolog_stamp' => new Column(['title' => __('models/devices.fields.attphotolog_stamp'),'name' => 'attphotolog_stamp', 'data' => 'attphotolog_stamp', 'searchable' => true, 'elmsearch' => 'text']),
-            'error_delay' => new Column(['title' => __('models/devices.fields.error_delay'),'name' => 'error_delay', 'data' => 'error_delay', 'searchable' => true, 'elmsearch' => 'text']),
-            'delay' => new Column(['title' => __('models/devices.fields.delay'),'name' => 'delay', 'data' => 'delay', 'searchable' => true, 'elmsearch' => 'text']),
-            'trans_times' => new Column(['title' => __('models/devices.fields.trans_times'),'name' => 'trans_times', 'data' => 'trans_times', 'searchable' => true, 'elmsearch' => 'text']),
-            'trans_interval' => new Column(['title' => __('models/devices.fields.trans_interval'),'name' => 'trans_interval', 'data' => 'trans_interval', 'searchable' => true, 'elmsearch' => 'text']),
-            'trans_flag' => new Column(['title' => __('models/devices.fields.trans_flag'),'name' => 'trans_flag', 'data' => 'trans_flag', 'searchable' => true, 'elmsearch' => 'text']),
-            'timezone' => new Column(['title' => __('models/devices.fields.timezone'),'name' => 'timezone', 'data' => 'timezone', 'searchable' => true, 'elmsearch' => 'text']),
-            'realtime' => new Column(['title' => __('models/devices.fields.realtime'),'name' => 'realtime', 'data' => 'realtime', 'searchable' => true, 'elmsearch' => 'text']),
-            'encrypt' => new Column(['title' => __('models/devices.fields.encrypt'),'name' => 'encrypt', 'data' => 'encrypt', 'searchable' => true, 'elmsearch' => 'text']),
-            'server_version' => new Column(['title' => __('models/devices.fields.server_version'),'name' => 'server_version', 'data' => 'server_version', 'searchable' => true, 'elmsearch' => 'text']),
-            'table_name_stamp' => new Column(['title' => __('models/devices.fields.table_name_stamp'),'name' => 'table_name_stamp', 'data' => 'table_name_stamp', 'searchable' => true, 'elmsearch' => 'text'])
+            'device_id' => new Column(['title' => __('models/webhooks.fields.device_id'),'name' => 'device_id', 'data' => 'device.name', 'searchable' => true, 'elmsearch' => 'text']),
+            'url' => new Column(['title' => __('models/webhooks.fields.url'),'name' => 'url', 'data' => 'url', 'searchable' => true, 'elmsearch' => 'text'])
         ];
     }
 
@@ -145,7 +131,7 @@ class DeviceDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'devices_datatable_' . time();
+        return 'webhooks_datatable_' . time();
     }
 
     /**

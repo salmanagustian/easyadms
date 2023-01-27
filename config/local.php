@@ -14,7 +14,8 @@ return [
         'email' => ['alias' => 'email'],
         'upper' => ['casing' => 'upper'],
         // 23.232.323.4-444.444 -- nomer NPWP
-        'tax' => ['mask' => '9{2}.9{3}.9{3}.9{1}-.9{3}.9{3}']
+        'tax' => ['mask' => '9{2}.9{3}.9{3}.9{1}-.9{3}.9{3}'],
+        'url' => ['regex' => 'https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}.*']
     ],
     'select2' => [
         'ajax' => ['data-ajax' => 1],

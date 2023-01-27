@@ -51,4 +51,9 @@ class DeviceRepository extends BaseRepository
     {
         return Device::class;
     }
+
+    public function deviceWebhook(){
+        $query = $this->allQuery([], null, null);
+        return $query->disableModelCaching()->whereDoesntHave('webhook')->pluck('name', 'id')->toArray();
+    }
 }

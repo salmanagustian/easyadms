@@ -170,7 +170,7 @@ class TemplateFingerprintDeviceController extends AppBaseController
      * @return Response
      */
     private function getOptionItems(){        
-        $device = new DeviceRepository(app());
+        $device = new DeviceRepository();
         return [
             'baseRoute' => $this->baseRoute,
             'baseView' => $this->baseView,

@@ -6,11 +6,19 @@
 </div>
 </div>
 
+<!-- Serial Number Field -->
+<div class="form-group row mb-3">
+    {!! Form::label('name', __('models/devices.fields.name').':', ['class' => 'col-md-3 col-form-label']) !!}
+<div class="col-md-9"> 
+    {!! Form::text('name', null, ['class' => 'form-control','maxlength' => 40,'maxlength' => 40, 'required' => 'required']) !!}
+</div>
+</div>
+
 <!-- Additional Info Field -->
 <div class="form-group row mb-3">
     {!! Form::label('additional_info', __('models/devices.fields.additional_info').':', ['class' => 'col-md-3 col-form-label']) !!}
 <div class="col-md-9"> 
-    {!! Form::text('additional_info', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255, 'required' => 'required']) !!}
+    {!! Form::text('additional_info', null, ['class' => 'form-control','maxlength' => 255, 'readonly' => 'readonly']) !!}
 </div>
 </div>
 
@@ -26,7 +34,7 @@
 <div class="form-group row mb-3">
     {!! Form::label('operlog_stamp', __('models/devices.fields.operlog_stamp').':', ['class' => 'col-md-3 col-form-label']) !!}
 <div class="col-md-9"> 
-    {!! Form::number('operlog_stamp', null, ['class' => 'form-control', 'required' => 'required']) !!}
+    {!! Form::number('operlog_stamp', null, ['class' => 'form-control']) !!}
 </div>
 </div>
 
@@ -34,7 +42,7 @@
 <div class="form-group row mb-3">
     {!! Form::label('attphotolog_stamp', __('models/devices.fields.attphotolog_stamp').':', ['class' => 'col-md-3 col-form-label']) !!}
 <div class="col-md-9"> 
-    {!! Form::number('attphotolog_stamp', null, ['class' => 'form-control', 'required' => 'required']) !!}
+    {!! Form::number('attphotolog_stamp', null, ['class' => 'form-control']) !!}
 </div>
 </div>
 
@@ -114,7 +122,7 @@
 <div class="form-group row mb-3">
     {!! Form::label('server_version', __('models/devices.fields.server_version').':', ['class' => 'col-md-3 col-form-label']) !!}
 <div class="col-md-9"> 
-    {!! Form::text('server_version', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255, 'required' => 'required']) !!}
+    {!! Form::text('server_version', null, ['class' => 'form-control','maxlength' => 255, 'readonly' => 'readonly']) !!}
 </div>
 </div>
 
@@ -122,6 +130,6 @@
 <div class="form-group row mb-3">
     {!! Form::label('table_name_stamp', __('models/devices.fields.table_name_stamp').':', ['class' => 'col-md-3 col-form-label']) !!}
 <div class="col-md-9"> 
-    {!! Form::text('table_name_stamp', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255, 'required' => 'required']) !!}
+    {!! Form::text('table_name_stamp', null, ['class' => 'form-control','maxlength' => 255]) !!}
 </div>
 </div>

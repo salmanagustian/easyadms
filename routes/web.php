@@ -48,9 +48,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('commands', CommandController::class);
     Route::resource('settings', SettingController::class);
     Route::resource('templateFingerprintDevices', TemplateFingerprintDeviceController::class);
+    Route::resource('webhooks', WebhookController::class);
 });
-
-// Route::get('/getrequest', [\App\Http\Controllers\Auth\ChangePasswordController::class, 'reset'])
 
 
 Route::group(['prefix' => 'artisan'], function () {
@@ -58,35 +57,3 @@ Route::group(['prefix' => 'artisan'], function () {
         Artisan::call('cache:clear');
     });
 });
-
-
-
-Route::resource('attendanceLogs', AttendanceLogController::class);
-
-Route::resource('userDevices', UserDeviceController::class);
-
-Route::resource('templateFingerprintDevices', TemplateFingerprintDeviceController::class);
-
-Route::resource('attendanceLogs', AttendanceLogController::class);
-
-Route::resource('userDevices', UserDeviceController::class);
-
-Route::resource('templateFingerprintDevices', TemplateFingerprintDeviceController::class);
-
-Route::resource('attendanceLogs', AttendanceLogController::class);
-
-Route::resource('userDevices', UserDeviceController::class);
-
-Route::resource('templateFingerprintDevices', TemplateFingerprintDeviceController::class);
-
-Route::resource('attendanceLogs', AttendanceLogController::class);
-
-Route::resource('userDevices', UserDeviceController::class);
-
-Route::resource('templateFingerprintDevices', TemplateFingerprintDeviceController::class);
-
-Route::resource('attendanceLogs', AttendanceLogController::class);
-
-Route::resource('userDevices', UserDeviceController::class);
-
-Route::resource('templateFingerprintDevices', TemplateFingerprintDeviceController::class);

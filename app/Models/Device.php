@@ -115,6 +115,7 @@ class Device extends Model
 
     public $fillable = [
         'serial_number',
+        'name',
         'additional_info',
         'attlog_stamp',
         'operlog_stamp',
@@ -139,6 +140,7 @@ class Device extends Model
     protected $casts = [
         'id' => 'integer',
         'serial_number' => 'string',
+        'name' => 'string',
         'additional_info' => 'string',
         'attlog_stamp' => 'integer',
         'operlog_stamp' => 'integer',
@@ -162,6 +164,7 @@ class Device extends Model
      */
     public static $rules = [
         'serial_number' => 'required|string|max:40',
+        'name' => 'required|string|max:40',
         'additional_info' => 'nullable|string|max:255',
         'attlog_stamp' => 'nullable|integer',
         'operlog_stamp' => 'nullable|integer',
@@ -208,5 +211,15 @@ class Device extends Model
     public function userDevices()
     {
         return $this->hasMany(\App\Models\UserDevice::class, 'device_id');
+    }
+
+    /**
+     * Get the webhook associated with the Device
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function webhook()
+    {
+        return $this->hasOne(Webhook::class, 'device_id');
     }
 }

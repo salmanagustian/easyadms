@@ -31,7 +31,11 @@ class CdataGetController extends Controller
         $delay = $device->delay ?? 30;
         $transFlag = $device->transFlag ?? '1111111100';
         $realtime = $device->realtime ?? '1';
-        $encrypt = $device->encrypt ?? 0;        
+        $encrypt = $device->encrypt ?? 0;
+        if(empty($device->name)){
+            $device->name = $sn;
+        }
+        
         $device->save();
 
         $textResponse = <<<STR
