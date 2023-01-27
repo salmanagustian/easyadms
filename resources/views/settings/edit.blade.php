@@ -4,7 +4,7 @@
     @push('breadcrumb')
         <ol class="breadcrumb  my-0 ms-2">
           <li class="breadcrumb-item">
-             <a href="{!! route($baseRoute.'..index') !!}">@lang('models/settings.singular')</a>
+             <a href="{!! route($baseRoute.'.index') !!}">@lang('models/settings.singular')</a>
           </li>
           <li class="breadcrumb-item active">@lang('crud.edit')</li>
         </ol>
@@ -30,7 +30,7 @@
                           <!-- Submit Field -->
                             <div class="form-group col-sm-12">
                                 {!! Form::submit(__('crud.save'), ['class' => 'btn btn-primary']) !!}
-                                <a href="{{ route($baseRoute.'..index') }}" class="btn btn-default">@lang('crud.cancel')</a>
+                                <a href="{{ route($baseRoute.'.index') }}" class="btn btn-default">@lang('crud.cancel')</a>
                             </div>
                           </div>                            
                       </div>                    
