@@ -122,11 +122,11 @@ class AttendanceLogDataTable extends DataTable
      */
     protected function getColumns()
     {
-        $deviceItem = convertArrayPairValueWithKey(['' => 'choose'] + Device::pluck('serial_number', 'id')->toArray());        
+        $deviceItem = convertArrayPairValueWithKey(['' => 'choose'] + Device::pluck('name', 'id')->toArray());        
         return [
             'device_id' => new Column(['title' => __('models/attendanceLogs.fields.device_id'),'name' => 'device_id', 'data' => 'device.name', 'searchable' => true, 'elmsearch' => 'dropdown', 'listItem' => $deviceItem]),
             'pin' => new Column(['title' => __('models/attendanceLogs.fields.pin'),'name' => 'pin', 'data' => 'pin', 'searchable' => true, 'elmsearch' => 'text']),            
-            'fingertime' => new Column(['title' => __('models/attendanceLogs.fields.fingertime'),'name' => 'fingertime', 'data' => 'fingertime', 'searchable' => true, 'elmsearch' => 'daterange']),
+            'fingertime' => new Column(['title' => __('models/attendanceLogs.fields.fingertime'),'name' => 'fingertime', 'data' => 'fingertime', 'searchable' => true, 'elmsearch' => 'datetimerange']),
             // 'status' => new Column(['title' => __('models/attendanceLogs.fields.status'),'name' => 'status', 'data' => 'status', 'searchable' => true, 'elmsearch' => 'text']),
             // 'verify' => new Column(['title' => __('models/attendanceLogs.fields.verify'),'name' => 'verify', 'data' => 'verify', 'searchable' => true, 'elmsearch' => 'text']),
             // 'work_code' => new Column(['title' => __('models/attendanceLogs.fields.work_code'),'name' => 'work_code', 'data' => 'work_code', 'searchable' => true, 'elmsearch' => 'text']),
