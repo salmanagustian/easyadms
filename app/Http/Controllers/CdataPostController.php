@@ -52,6 +52,7 @@ STR;
     public function devicemd(Request $request)
     {                
         $content = $request->getContent();
+        \Log::info($content);
         if($content){
             $clientCommand = extractDeviceCommandResponse($content);
             $this->updateCommand($clientCommand);
