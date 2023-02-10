@@ -50,7 +50,7 @@ class CommandDataTable extends DataTable
      */
     public function query(Command $model)
     {
-        return $model->select([$model->getTable().'.*'])->newQuery();
+        return $model->select([$model->getTable().'.*'])->with(['device'])->newQuery();
     }
 
     /**
@@ -60,22 +60,12 @@ class CommandDataTable extends DataTable
      */
     public function html()
     {
-        $buttons = [
-                    [
-                       'extend' => 'create',
-                       'className' => 'btn btn-default btn-sm no-corner',
-                       'text' => '<i class="fa fa-plus"></i> ' .__('auth.app.create').''
-                    ],
+        $buttons = [                    
                     [
                        'extend' => 'export',
                        'className' => 'btn btn-default btn-sm no-corner',
                        'text' => '<i class="fa fa-download"></i> ' .__('auth.app.export').''
-                    ],
-                    [
-                       'extend' => 'import',
-                       'className' => 'btn btn-default btn-sm no-corner',
-                       'text' => '<i class="fa fa-upload"></i> ' .__('auth.app.import').''
-                    ],
+                    ],                    
                     [
                        'extend' => 'print',
                        'className' => 'btn btn-default btn-sm no-corner',
@@ -119,9 +109,12 @@ class CommandDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'device_id' => new Column(['title' => __('models/commands.fields.device_id'),'name' => 'device_id', 'data' => 'device_id', 'searchable' => true, 'elmsearch' => 'text']),
+            'device_id' => new Column(['title' => __('models/commands.fields.device_id'),'name' => 'device_id', 'data' => 'device.name', 'searchable' => true, 'elmsearch' => 'text']),
             'command' => new Column(['title' => __('models/commands.fields.command'),'name' => 'command', 'data' => 'command', 'searchable' => true, 'elmsearch' => 'text']),
-            'status' => new Column(['title' => __('models/commands.fields.status'),'name' => 'status', 'data' => 'status', 'searchable' => true, 'elmsearch' => 'text'])
+            'status' => new Column(['title' => __('models/commands.fields.status'),'name' => 'status', 'data' => 'status', 'searchable' => true, 'elmsearch' => 'text']),
+            'return_command' => new Column(['title' => __('models/commands.fields.return_command'),'name' => 'return_command', 'data' => 'return_command', 'searchable' => false, 'elmsearch' => 'text']),
+            'created_at' => new Column(['title' => __('models/commands.fields.created_at'),'name' => 'created_at', 'data' => 'created_at', 'searchable' => false, 'elmsearch' => 'text']),
+            'expired_date' => new Column(['title' => __('models/commands.fields.expired_date'),'name' => 'expired_date', 'data' => 'expired_date', 'searchable' => false, 'elmsearch' => 'text']),
         ];
     }
 

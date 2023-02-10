@@ -9,5 +9,8 @@ return array (
     'device_id' => 'Device Id',
     'command' => 'Command',
     'status' => 'Status',
+    'return_command' => 'Return Command',
+    'created_at' => 'Created At',
+    'expired_date' => 'Expired At'
   ),
 );

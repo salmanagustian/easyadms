@@ -221,5 +221,5 @@ class Device extends Model
     public function webhook()
     {
         return $this->hasOne(Webhook::class, 'device_id');
-    }
+    }    
 }

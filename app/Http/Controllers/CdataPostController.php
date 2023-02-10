@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AttendanceLog;
+use App\Models\Command;
 use App\Models\Device;
 use App\Repositories\AttendanceLogRepository;
 use App\Repositories\TemplateFingerprintDeviceRepository;
@@ -50,8 +51,13 @@ STR;
 
     public function devicemd(Request $request)
     {                
+        $content = $request->getContent();
+        if($content){
+            $clientCommand = extractDeviceCommandResponse($content);
+            $this->updateCommand($clientCommand);
+        }
         $textResponse = <<<STR
-OK: 
+OK
 STR;        
         return response($textResponse, 200)
         ->header('Content-Type', 'text/plain')
@@ -108,5 +114,15 @@ STR;
 
     private function saveTemplateFinger($content, $deviceId){        
         (new TemplateFingerprintDeviceRepository())->saveTemplate($content, $deviceId);
-    }    
+    }
+
+    private function updateCommand($clientCommand){
+        foreach($clientCommand as $command){
+            $c = Command::find($command['ID']);
+            if($c){
+                $c->return_command = $command['Return'] ?? '-';
+                $c->save();
+            }
+        }
+    }
 }

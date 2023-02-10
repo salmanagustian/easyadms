@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CdataGetController;
 use App\Http\Controllers\CdataPostController;
+use App\Http\Controllers\DeviceOperationController;
 use Illuminate\Support\Facades\Route; 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
@@ -43,9 +44,11 @@ Route::group(['middleware' => ['auth']], function(){
     });
     
     Route::resource('devices', DeviceController::class);
+    Route::get('deviceOperation/{device}', [DeviceOperationController::class, 'index'])->name('deviceOperation');
+    Route::post('deviceOperationCommand/{device}', [DeviceOperationController::class, 'store'])->name('deviceOperationCommand');
     Route::resource('attendanceLogs', AttendanceLogController::class);
     Route::resource('userDevices', UserDeviceController::class);
-    Route::resource('commands', CommandController::class);
+    Route::resource('commands', CommandController::class)->only(['index', 'destroy']);
     Route::resource('settings', SettingController::class);
     Route::resource('templateFingerprintDevices', TemplateFingerprintDeviceController::class);
     Route::resource('webhooks', WebhookController::class);

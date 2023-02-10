@@ -118,6 +118,8 @@ class Command extends Model
     public $fillable = [
         'device_id',
         'command',
+        'return_command',
+        'expired_date',
         'status'
     ];
 

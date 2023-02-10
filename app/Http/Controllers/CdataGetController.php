@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Command;
 use App\Models\Device;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -68,14 +69,22 @@ STR;
             $this->updateInfoDevice($sn, $info);
         }else{
             $device = Device::firstOrCreate(['serial_number' => $sn]);
-            $command = Command::where(['device_id' => $device->id, 'status' => 1])->orderBy('id')->first();
+            $command = Command::where(['device_id' => $device->id, 'status' => 1])
+                        ->where('expired_date', '>=', Carbon::now())
+                        ->whereNull('return_command')
+                        ->orderBy('id')
+                        ->get();
             if($command){
-                $commandString = 'C:'.$command->id.':'.$command->command;
+                $tmpCommand = [];
+                foreach($command as $c){
+                    $tmpCommand[] = 'C:'.$c->id.':'.$c->command;
+                }
+                $commandString = implode(PHP_EOL, $tmpCommand);
             }
         }
         // $command = C:{{CmdId}}:DATA<spasi>QUERY<spasi>ATTLOG<spasi>StartTime{{StartTime}}<tab>EndTime={{EndTime}}        
         // Format start & end time YYYY-MM-DD HH:MM:SS
-        // C:22:DATA QUERY ATTLOG StartTime2023-01-21 00:00:00  EndTime=2023-01-21 23:59:59
+        // C:22:DATA QUERY ATTLOG StartTime=2023-01-21 00:00:00  EndTime=2023-01-21 23:59:59
         $textResponse = <<<STR
 {$commandString}
 STR;

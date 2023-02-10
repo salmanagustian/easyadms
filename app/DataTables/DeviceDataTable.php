@@ -37,9 +37,11 @@ class DeviceDataTable extends DataTable
                 $dataTable->filterColumn($column, new $operator($columnSearch));                
             }
         }
-        return $dataTable->addColumn('action', function($item){
+        return $dataTable->editColumn('additional_info', function($item){            
+            return '<div class="badge bg-info">'.implode('</div><div class="badge bg-info">',convertArrayStringPair(extractDeviceInfo($item->additional_info), ' : ')).'</div>';
+        })->addColumn('action', function($item){
             return view($this->baseView.'.datatables_actions', array_merge($item->toArray(), ['baseRoute' => $this->getBaseRoute()]));
-        });        
+        })->escapeColumns([]);        
     }
 
     /**
@@ -123,18 +125,18 @@ class DeviceDataTable extends DataTable
             'name' => new Column(['title' => __('models/devices.fields.name'),'name' => 'name', 'data' => 'name', 'searchable' => true, 'elmsearch' => 'text']),
             'additional_info' => new Column(['title' => __('models/devices.fields.additional_info'),'name' => 'additional_info', 'data' => 'additional_info', 'searchable' => true, 'elmsearch' => 'text']),
             'attlog_stamp' => new Column(['title' => __('models/devices.fields.attlog_stamp'),'name' => 'attlog_stamp', 'data' => 'attlog_stamp', 'searchable' => true, 'elmsearch' => 'text']),
-            'operlog_stamp' => new Column(['title' => __('models/devices.fields.operlog_stamp'),'name' => 'operlog_stamp', 'data' => 'operlog_stamp', 'searchable' => true, 'elmsearch' => 'text']),
-            'attphotolog_stamp' => new Column(['title' => __('models/devices.fields.attphotolog_stamp'),'name' => 'attphotolog_stamp', 'data' => 'attphotolog_stamp', 'searchable' => true, 'elmsearch' => 'text']),
-            'error_delay' => new Column(['title' => __('models/devices.fields.error_delay'),'name' => 'error_delay', 'data' => 'error_delay', 'searchable' => true, 'elmsearch' => 'text']),
-            'delay' => new Column(['title' => __('models/devices.fields.delay'),'name' => 'delay', 'data' => 'delay', 'searchable' => true, 'elmsearch' => 'text']),
-            'trans_times' => new Column(['title' => __('models/devices.fields.trans_times'),'name' => 'trans_times', 'data' => 'trans_times', 'searchable' => true, 'elmsearch' => 'text']),
-            'trans_interval' => new Column(['title' => __('models/devices.fields.trans_interval'),'name' => 'trans_interval', 'data' => 'trans_interval', 'searchable' => true, 'elmsearch' => 'text']),
-            'trans_flag' => new Column(['title' => __('models/devices.fields.trans_flag'),'name' => 'trans_flag', 'data' => 'trans_flag', 'searchable' => true, 'elmsearch' => 'text']),
-            'timezone' => new Column(['title' => __('models/devices.fields.timezone'),'name' => 'timezone', 'data' => 'timezone', 'searchable' => true, 'elmsearch' => 'text']),
-            'realtime' => new Column(['title' => __('models/devices.fields.realtime'),'name' => 'realtime', 'data' => 'realtime', 'searchable' => true, 'elmsearch' => 'text']),
-            'encrypt' => new Column(['title' => __('models/devices.fields.encrypt'),'name' => 'encrypt', 'data' => 'encrypt', 'searchable' => true, 'elmsearch' => 'text']),
-            'server_version' => new Column(['title' => __('models/devices.fields.server_version'),'name' => 'server_version', 'data' => 'server_version', 'searchable' => true, 'elmsearch' => 'text']),
-            'table_name_stamp' => new Column(['title' => __('models/devices.fields.table_name_stamp'),'name' => 'table_name_stamp', 'data' => 'table_name_stamp', 'searchable' => true, 'elmsearch' => 'text'])
+            // 'operlog_stamp' => new Column(['title' => __('models/devices.fields.operlog_stamp'),'name' => 'operlog_stamp', 'data' => 'operlog_stamp', 'searchable' => true, 'elmsearch' => 'text']),
+            // 'attphotolog_stamp' => new Column(['title' => __('models/devices.fields.attphotolog_stamp'),'name' => 'attphotolog_stamp', 'data' => 'attphotolog_stamp', 'searchable' => true, 'elmsearch' => 'text']),
+            // 'error_delay' => new Column(['title' => __('models/devices.fields.error_delay'),'name' => 'error_delay', 'data' => 'error_delay', 'searchable' => true, 'elmsearch' => 'text']),
+            // 'delay' => new Column(['title' => __('models/devices.fields.delay'),'name' => 'delay', 'data' => 'delay', 'searchable' => true, 'elmsearch' => 'text']),
+            // 'trans_times' => new Column(['title' => __('models/devices.fields.trans_times'),'name' => 'trans_times', 'data' => 'trans_times', 'searchable' => true, 'elmsearch' => 'text']),
+            // 'trans_interval' => new Column(['title' => __('models/devices.fields.trans_interval'),'name' => 'trans_interval', 'data' => 'trans_interval', 'searchable' => true, 'elmsearch' => 'text']),
+            // 'trans_flag' => new Column(['title' => __('models/devices.fields.trans_flag'),'name' => 'trans_flag', 'data' => 'trans_flag', 'searchable' => true, 'elmsearch' => 'text']),
+            // 'timezone' => new Column(['title' => __('models/devices.fields.timezone'),'name' => 'timezone', 'data' => 'timezone', 'searchable' => true, 'elmsearch' => 'text']),
+            // 'realtime' => new Column(['title' => __('models/devices.fields.realtime'),'name' => 'realtime', 'data' => 'realtime', 'searchable' => true, 'elmsearch' => 'text']),
+            // 'encrypt' => new Column(['title' => __('models/devices.fields.encrypt'),'name' => 'encrypt', 'data' => 'encrypt', 'searchable' => true, 'elmsearch' => 'text']),
+            // 'server_version' => new Column(['title' => __('models/devices.fields.server_version'),'name' => 'server_version', 'data' => 'server_version', 'searchable' => true, 'elmsearch' => 'text']),
+            // 'table_name_stamp' => new Column(['title' => __('models/devices.fields.table_name_stamp'),'name' => 'table_name_stamp', 'data' => 'table_name_stamp', 'searchable' => true, 'elmsearch' => 'text'])
         ];
     }
 

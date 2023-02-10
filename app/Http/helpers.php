@@ -73,6 +73,7 @@ if (!function_exists('convertStringArray')) {
 if (!function_exists('convertArrayStringPair')) {
     function convertArrayStringPair($values, $separator = ':')
     {
+        
         $result = [];
         array_walk($values, function ($item, $key) use ($separator, &$result) { $result[] = $key.$separator.$item; });
 
@@ -161,4 +162,48 @@ if (!function_exists('extractDataOperationLog')) {
         return $result;
     }
 }
+// 1	Firmware version number
+// 2	Number of enrolled users
+// 3	Number of enrolled fingerprints
+// 4	Number of attendance records
+// 5	IP address of Equioment
+// 6	Version of fingerprint algorithm
+// 7	Version of face algorithm
+// 8	Number of faces required for face enrollment,
+// 9	Number of enrolled faces
+// 10	Angka yang menunjukkan fungsi yang didukung mesin
 
+if (!function_exists('extractDeviceInfo')) {
+    function extractDeviceInfo(String $logs = null)
+    {        
+        if(empty($logs)) return [];
+        $lines = explode(',', $logs);                
+        return [
+            'firmware_version' => $lines[0],
+            'number_users' => $lines[1],
+            'number_fp' => $lines[2],
+            'number_attendance_log' => $lines[3],
+            'ip' => $lines[4],
+            'algorithm_fp_version' => $lines[5] ?? '-',
+            'algorithm_face_version' => $lines[6] ?? '-',
+            'number_face_required' => $lines[7] ?? '-',
+            'number_face' => $lines[8] ?? '-',
+            'function' => $lines[9] ?? '-',            
+        ];
+    }
+}
+
+if (!function_exists('extractDeviceCommandResponse')) {
+    function extractDeviceCommandResponse(String $logs)
+    {
+        $result = [];
+        $lines = explode(PHP_EOL, $logs);
+        foreach($lines as $line){
+            if(!empty($line)){
+                $result[] = convertStringArray(preg_split('/&/', $line), '=');
+            }
+        }
+
+        return $result;
+    }
+}
