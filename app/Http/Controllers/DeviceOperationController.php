@@ -29,7 +29,7 @@ class DeviceOperationController extends Controller
         if($input['command'] == 'QUERY'){
             $input['command'] = 'DATA QUERY ATTLOG StartTime='.$input['startTime'].' EndTime='.$input['endTime'];
         }
-        $input['expired_date'] = Carbon::now()->addHour();
+        $input['expired_date'] = Carbon::now()->addMinutes(5);
         $repository = new CommandRepository();
         $command = $repository->create($input);
         if($command instanceof Exception){
