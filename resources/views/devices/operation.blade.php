@@ -65,11 +65,20 @@
         function sendCommand(elm){
             const _url = "{{ route('deviceOperationCommand', $device->id) }}"
             const _json = { command: $(elm).val() }
-            $.redirect(
-                _url, _json,
-                'POST',
-                '_parent'
-            )
+
+            bootbox.confirm({
+                title: 'Warning',
+                message: 'Are you sure to execute this command ?',
+                callback: function(result){
+                    if(result){
+                        $.redirect(
+                            _url, _json,
+                            'POST',
+                            '_parent'
+                        )
+                    }
+                }
+            })            
         }
 
         function sendQueryCommand(elm){
