@@ -70,7 +70,7 @@ class UserDeviceRepository extends BaseRepository
             'grp' => $item['Grp'],
             'tz' => $item['TZ'],
             'verify' => $item['Verify'],
-            'vice_card' => $item['ViceCard'],
+            'vice_card' => $item['ViceCard'] ?? '-',
             'start_datetime' => null,
             'end_datetime' => null
         ];

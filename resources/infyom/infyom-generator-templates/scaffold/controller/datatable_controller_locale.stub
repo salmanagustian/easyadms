@@ -42,7 +42,7 @@ class $MODEL_NAME$Controller extends AppBaseController
      */
     public function create()
     {
-        return view($this->baseRoute.'.create')->with($this->getOptionItems());
+        return view($this->baseView.'.create')->with($this->getOptionItems());
     }
 
     /**
@@ -83,7 +83,7 @@ class $MODEL_NAME$Controller extends AppBaseController
             return redirect(route($this->baseRoute.'.index'));
         }
 
-        return view($this->baseRoute.'.show')->with('$MODEL_NAME_CAMEL$', $$MODEL_NAME_CAMEL$);
+        return view($this->baseView.'.show')->with('$MODEL_NAME_CAMEL$', $$MODEL_NAME_CAMEL$);
     }
 
     /**
@@ -103,7 +103,7 @@ class $MODEL_NAME$Controller extends AppBaseController
             return redirect(route($this->baseRoute.'.index'));
         }
         
-        return view($this->baseRoute.'.edit')->with('$MODEL_NAME_CAMEL$', $$MODEL_NAME_CAMEL$)->with($this->getOptionItems());
+        return view($this->baseView.'.edit')->with('$MODEL_NAME_CAMEL$', $$MODEL_NAME_CAMEL$)->with($this->getOptionItems());
     }
 
     /**
