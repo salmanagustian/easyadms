@@ -57,7 +57,7 @@ TableNameStamp
 STR;
         return response($textResponse, 200)
         ->header('Content-Type', 'text/plain')
-        ->header('Content-length', strlen($textResponse));
+        ->header('Content-Length', strlen($textResponse));
     }
 
     public function getRequest(Request $request)
