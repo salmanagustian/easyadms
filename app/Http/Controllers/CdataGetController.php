@@ -39,11 +39,27 @@ class CdataGetController extends Controller
         
         $device->save();
 
+//         $textResponse = <<<STR
+// GET OPTION FROM: {$sn}
+// ATTLOGStamp={$lastStamp}
+// OPERLOGStamp={$operStamp}
+// ATTPHOTOStamp={$attPhotoStamp}
+// ErrorDelay={$errorDelay}
+// Delay={$delay}
+// TransTimes={$transTimes}
+// TransInterval={$transInterval}
+// TransFlag={$transFlag}
+// TimeZone={$timezone}
+// Realtime={$realtime}
+// Encrypt={$encrypt}
+// ServerVer={$pushver}
+// TableNameStamp
+// STR;
+    /** ikuti format solution.cloud */
         $textResponse = <<<STR
 GET OPTION FROM: {$sn}
-ATTLOGStamp={$lastStamp}
-OPERLOGStamp={$operStamp}
-ATTPHOTOStamp={$attPhotoStamp}
+Stamp={$lastStamp}
+OpStamp={$operStamp}
 ErrorDelay={$errorDelay}
 Delay={$delay}
 TransTimes={$transTimes}
