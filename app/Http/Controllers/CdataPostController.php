@@ -27,6 +27,9 @@ class CdataPostController extends Controller
         $content = $request->getContent();
         $result = 0;
         $device = Device::firstOrCreate(['serial_number' => $sn]);
+        if (env('APP_DEBUG')) {
+            \Log::info($content);
+        }
         switch($table){
             case 'ATTLOG':
                 $result = $this->saveAttendanceLog($content, $device);

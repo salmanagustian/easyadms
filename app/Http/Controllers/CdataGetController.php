@@ -30,7 +30,7 @@ class CdataGetController extends Controller
         $attPhotoStamp = $device->attphotolog_stamp;
         $errorDelay = $device->error_delay ?? 30;
         $delay = $device->delay ?? 30;
-        $transFlag = $device->transFlag ?? '1111111100';
+        $transFlag = $device->transFlag ?? '1000000000';
         $realtime = $device->realtime ?? '1';
         $encrypt = $device->encrypt ?? 0;
         if(empty($device->name)){
