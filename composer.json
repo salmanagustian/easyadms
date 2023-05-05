@@ -28,6 +28,7 @@
         "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.4",
+        "laravelcollective/html": "^6.4",
         "rap2hpoutre/fast-excel": "^3.2",
         "spatie/laravel-http-logger": "^1.10",
         "spatie/laravel-menu": "^3.6",
